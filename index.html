@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precificador 3D - GRAPER</title>
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>PRECIFICAR SERVIÇO 3D</h1>
+    </header>
+    <main class="dad">
+        <section class="content">
+            <h2>🎨 Modelo 3D</h2>
+            <label for="iquantity">Quantidade:</label> <br>
+            <input type="number" name="quantity" id="iquantity"> <br>
+            
+            <label for="itime">Tempo de impressão</label> <br>
+            <input type="number" name="hour" id="ihour" placeholder="horas">hs <br>
+            <input type="number" name="minutes" id="iminutes" placeholder="minutos">min <br>
+            
+            <label for="iweight">Peso estimado (g):</label> <br>
+            <input type="number" name="weight" id="iweight" placeholder="Peso total em gramas"> <br>
+        </section>
+
+        <section class="costs">
+            <h2>📈 Custos</h2>
+            <label for="icoil">Custo Filamento por Kg (R$):</label> <br>
+            <input type="text" name="coil" id="icoil" placeholder="Ex: 95.00"> <br>
+
+            <label for="icost-kwh">Custo por KWh (R$)</label> <br>
+            <input type="number" name="cost-kwh" id="icost-kwh" placeholder="Verificar na fatura"> <br>
+        </section>
+        <section class="fixed-cost">
+            <h2>🧾 Custo Fixo</h2>
+            <label for="icost-month">Custo por Mês</label> <br>
+            <input type="number" name="cost0month" id="icost-month"> <br>
+            
+            <label for="iuse-percentage">Percentual de uso</label> <br>
+            <input type="number" name="use-percentage" id="iuse-percentage" placeholder="Ex: 25%"> <br>
+        </section>
+
+        <section class="amortisation">
+            <h2>📉 Amortização</h2>
+            <label for="iprinter-value">Valor da impressora 3D (R$)</label> <br>
+            <input type="number" name="printer-value" id="iprinter-value"> <br>
+
+            <label for="iservice-life">Vida útil (horas)</label> <br>
+            <input type="number" name="servie-life" id="iservice-life">
+        </section>
+
+        <section class="failure-percentage">
+            <h2>⚠️ Percentual de Falhas</h2>
+            <label for="ifailure-percentage">Percentual de Falhas (%)</label> <br>
+            <input type="number" name="ifailure-percentage" id="ifailure-percentage" placeholder="ex: 10%"> <br>
+        </section>
+
+        <section class="acessory-and-packaging">
+            <h2>📦 Acessórios e Embalagens</h2>
+            <label for="idescription">Descrição</label> <br>
+            <input type="text" name="description" id="idescription"> <br>
+
+            <label for="ivalue-acessory">Valor: (R$)</label> <br>
+            <input type="number" name="value-acessory" id="ivalue-acessory"> <br>
+        </section>
+
+        <section class="price-configuration">
+            <h2>⚙️ Configuração de preços</h2>
+            <input type="radio" name="config" id="imarkup" checked>
+            <label for="imarkup">Markup</label> <br>
+
+            <input type="radio" name="config" id="imarge"> 
+            <label for="imarge">Margem de Contribuição</label> <br>
+
+            <input type="radio" name="config" id="itype">
+            <label for="itype">Digitar preço</label>
+        </section>
+
+        <section class="generate">
+            <button id="btn-generate">GERAR</button>
+        </section>
+
+        <section id="result">
+           <h2>📊 Resultado</h2> 
+        </section>
+    </main>
+    <footer><p>Desenvolvido por <a href="https://github.com/jonathan-cfa" target="_blank">Jonathan Carlos</a></p></footer>
+</body>
+</html>
