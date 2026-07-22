@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Precificador 3D - GRAPER</title>
     <link rel="stylesheet" href="src/css/style.css">
+    <link rel="shortcut icon" href="src/images/fav.svg" type="image/x-icon">
 </head>
+
 <body>
     <header>
         <h1>PRECIFICAR SERVIÇO 3D</h1>
@@ -15,11 +18,11 @@
             <h2>🎨 Modelo 3D</h2>
             <label for="iquantity">Quantidade:</label> <br>
             <input type="number" name="quantity" id="iquantity"> <br>
-            
+
             <label for="itime">Tempo de impressão</label> <br>
             <input type="number" name="hour" id="ihour" placeholder="horas">hs <br>
             <input type="number" name="minutes" id="iminutes" placeholder="minutos">min <br>
-            
+
             <label for="iweight">Peso estimado (g):</label> <br>
             <input type="number" name="weight" id="iweight" placeholder="Peso total em gramas"> <br>
         </section>
@@ -67,14 +70,27 @@
 
         <section class="price-configuration">
             <h2>⚙️ Configuração de preços</h2>
-            <input type="radio" name="config" id="imarkup" checked>
+            <input type="radio" name="config" id="imarkup" value="markup" checked>
             <label for="imarkup">Markup</label> <br>
 
-            <input type="radio" name="config" id="imarge"> 
+            <div id="campo-markup" class="campo-condicional">
+                <input type="number" id="input-markup" value="30">
+            </div>
+
+            <input type="radio" name="config" id="imarge" value="margem">
             <label for="imarge">Margem de Contribuição</label> <br>
 
-            <input type="radio" name="config" id="itype">
+            <div id="campo-margem" class="campo-condicional" hidden>
+                <input type="number" name="" id="input-margem" value="30">
+            </div>
+
+            <input type="radio" name="config" id="itype" value="manual">
             <label for="itype">Digitar preço</label>
+
+            <div id="campo-manual" class="campo-condicional" hidden>
+                <input type="number" name="" id="input-manual">
+            </div>
+
         </section>
 
         <section class="generate">
@@ -82,11 +98,14 @@
         </section>
 
         <section id="result">
-           <h2>📊 Resultado</h2> 
+            <h2>📊 Resultado</h2>
         </section>
     </main>
-    <footer><p>Desenvolvido por <a href="https://github.com/jonathan-cfa" target="_blank">Jonathan Carlos</a></p></footer>
+    <footer>
+        <p>Desenvolvido por <a href="https://github.com/jonathan-cfa" target="_blank">Jonathan Carlos</a></p>
+    </footer>
 
     <script src="src/js/script.js"></script>
 </body>
+
 </html>
