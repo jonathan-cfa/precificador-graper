@@ -26,11 +26,11 @@ const campo = {
     cMarkup: document.querySelector('#input-markup'),
     cMargem: document.querySelector('#input-margem'),
     cManual: document.querySelector('#input-manual')
-}
+};
 
 const consumption = {
     a1Mini: 95 / 1000,
-}
+};
 
 function pricingTool() {
     //const fields
@@ -58,7 +58,7 @@ function pricingTool() {
     const totalCost = totalFilamentCost + energyCost + amortization + acessoryCost;
     const costWithFailure = totalCost * (1 + (percentageFaile / 100));
     //information display
-    result.innerHTML = ''
+    result.innerHTML = '';
     result.innerHTML += `
     Custo Filamento por Kilo: R$${moeda(filamentCostPerGram)}
     Custo de filamento por grama: R$${moeda(totalFilamentCost)} <br>
@@ -82,7 +82,7 @@ const margem = Number(campo.cMargem.value);
 const manual = Number(campo.cManual.value);
 
 const radios = document.querySelectorAll('input[name="config"]');
-
+ 
 const camposPorValor = {
     markup: 'campo-markup',
     margem: 'campo-margem',
