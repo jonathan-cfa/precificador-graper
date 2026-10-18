@@ -42,11 +42,15 @@ function globalCode() {
             manual: Number(field.fManualValue.value),
         };
 
+        const consumption = {
+            a1Mini: 95 / 1000,
+        };
+
         function filamentPerGram() { return valueField.coil / 1000 }; // Cost of filament per gram
         function totalWeight() { return valueField.weight * valueField.qntPrint };//Weight total
         function totalFilamentCost() { return totalWeight() * filamentPerGram() }; //cost filament total
         function decimalTime() { return valueField.hour + (valueField.minute / 60) };//Decimal Time
-        function costEnergy(a1) { return (a1 * decimalTime()) * valueField.kwh };//Energy Costs
+        function costEnergy() { return (consumption.a1Mini * decimalTime()) * valueField.kwh };//Energy Costs
         function amortisation() { return (valueField.valuePrint / valueField.serviceLife) * decimalTime() };
         function totalCost() { return totalFilamentCost() + costEnergy() + amortisation() + valueField.addCost };
         function totalWithFailure() { return totalCost() * (1 + (valueField.failure / 100)) };
