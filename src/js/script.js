@@ -13,7 +13,7 @@ function globalCode() {
             fCoil: document.querySelector('#icoil'),
             fCostKwh: document.querySelector('#icost-kwh'),
             //Amortisation
-            fPrintValue: document.querySelector('#iprint-value'),
+            fPrintValue: document.querySelector('#iprinter-value'),
             fServiceLife: document.querySelector('#iservice-life'),
             //Failure
             fFailure: document.querySelector('#ifailure-percentage'),
@@ -42,6 +42,14 @@ function globalCode() {
             manual: Number(field.fManualValue.value),
         };
 
+        function filamentPerGram() { return valueField.coil / 1000 }; // Cost of filament per gram
+        function totalWeight() { return valueField.weight * valueField.qntPrint };//Weight total
+        function totalFilamentCost() { return totalWeight() * filamentPerGram() }; //cost filament total
+        function decimalTime() { return valueField.hour + (valueField.minute / 60) };//Decimal Time
+        function costEnergy(a1) { return (a1 * decimalTime()) * valueField.kwh };//Energy Costs
+        function amortisation() { return (valueField.valuePrint / valueField.serviceLife) * decimalTime() };
+        function totalCost() { return totalFilamentCost() + costEnergy() + amortisation() + valueField.addCost };
+        function totalWithFailure() { return totalCost() * (1 + (valueField.failure / 100)) };
     })
 }
 globalCode();
