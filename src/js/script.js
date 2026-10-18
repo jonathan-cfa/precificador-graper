@@ -26,7 +26,7 @@ function globalCode() {
             //==========Areas=============
             resultArea: document.querySelector('#result'),
             //Radios
-            radios: document.querySelectorAll('radio')
+            radios: document.querySelector('input[name="config"]:checked'),
         };
         const valueField = { // All values the Fields
             qntPrint: Number(field.fQnt.value),
@@ -106,8 +106,27 @@ function globalCode() {
 
         function convertation(valor) { return formatter.format(valor); } //Formatting function associated with a variable "formatter"
 
-        console.log(field.radios)
+        function amountDue() {
+            if (field.radios.value === 'markup') {
+                return totalWithFailure() * (1 + valueField.markup / 100);
+            }
+        }
+
+        function textAmountDue() {
+            const divAmount = document.createElement('div');
+
+            const divider = document.createElement('hr')
+            const strong = document.createElement('strong');
+            strong.textContent = 'Valor a cobrar:';
+
+            divAmount.append(divider,strong, convertation(amountDue()));
+
+            field.resultArea.appendChild(divAmount);
+        }
+
+        amountDue();
         textResult();
+        textAmountDue();
     });
 }
 globalCode();

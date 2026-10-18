@@ -70,25 +70,27 @@
         </section>
 
         <section class="price-configuration">
+
             <h2>⚙️ Configuração de preços</h2>
-            <input type="radio" name="config" id="imarkup" value="markup" checked>
+
+            <input type="radio" name="config" id="imarkup" value="markup" checked> <!-- Radio markup -->
             <label for="imarkup">Markup</label> <br>
 
-            <div id="campo-markup" class="campo-condicional">
+            <div id="campo-markup" class="campo-condicional"> <!-- Field markup -->
                 <input type="number" id="input-markup" value="30">
             </div>
 
-            <input type="radio" name="config" id="imarge" value="margem">
+            <input type="radio" name="config" id="imarge" value="margem"> <!-- Radio Marge -->
             <label for="imarge">Margem de Contribuição</label> <br>
 
-            <div id="campo-margem" class="campo-condicional" hidden>
+            <div id="campo-margem" class="campo-condicional" hidden> <!-- Field marge -->
                 <input type="number" name="" id="input-marge" value="30">
             </div>
 
-            <input type="radio" name="config" id="itype" value="manual">
+            <input type="radio" name="config" id="itype" value="manual"> <!-- Radio manual value -->
             <label for="itype">Digitar preço</label>
 
-            <div id="campo-manual" class="campo-condicional" hidden>
+            <div id="campo-manual" class="campo-condicional" hidden> <!-- Field manual -->
                 <input type="number" name="" id="input-manual">
             </div>
 
