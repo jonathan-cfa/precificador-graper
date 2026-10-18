@@ -74,15 +74,15 @@ function globalCode() {
         }
 
         function amortisation() { //Printer depreciation
-            return (valueField.valuePrint / valueField.serviceLife) * decimalTime()
+            return (valueField.valuePrint / valueField.serviceLife) * decimalTime();
         }
 
         function totalCost() { // Total cost
-            return totalFilamentCost() + costEnergy() + amortisation() + valueField.addCost
+            return totalFilamentCost() + costEnergy() + amortisation() + valueField.addCost;
         }
 
         function totalWithFailure() { //Total Cost of Failure
-            return totalCost() * (1 + (valueField.failure / 100))
+            return totalCost() * (1 + (valueField.failure / 100));
         }
 
         function textResult() { // Result printed in result area
@@ -124,7 +124,6 @@ function globalCode() {
             field.resultArea.appendChild(divAmount);
         }
 
-        amountDue();
         textResult();
         textAmountDue();
     });
