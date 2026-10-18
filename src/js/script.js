@@ -24,7 +24,9 @@ function globalCode() {
             fMarge: document.querySelector('#input-marge'),
             fManualValue: document.querySelector('#input-manual'),
             //==========Areas=============
-            resultArea: document.querySelector('#result')
+            resultArea: document.querySelector('#result'),
+            //Radios
+            radios: document.querySelectorAll('radio')
         };
         const valueField = {
             qntPrint: Number(field.fQnt.value),
@@ -46,36 +48,66 @@ function globalCode() {
             a1Mini: 95 / 1000,
         };
 
-        function filamentPerGram() { return valueField.coil / 1000 }; // Cost of filament per gram
-        function totalWeight() { return valueField.weight * valueField.qntPrint };//Weight total
-        function totalFilamentCost() { return totalWeight() * filamentPerGram() }; //cost filament total
-        function decimalTime() { return valueField.hour + (valueField.minute / 60) };//Decimal Time
-        function costEnergy() { return (consumption.a1Mini * decimalTime()) * valueField.kwh };//Energy Costs
-        function amortisation() { return (valueField.valuePrint / valueField.serviceLife) * decimalTime() };
-        function totalCost() { return totalFilamentCost() + costEnergy() + amortisation() + valueField.addCost };
-        function totalWithFailure() { return totalCost() * (1 + (valueField.failure / 100)) };
+        const formatter = new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        });
 
-        function textResult() {
-            const resultDiv = document.createElement('div');
-            field.resultArea.innerHTML = '';
-            resultDiv.innerHTML = 
-            `Quantidade de Impressões: ${valueField.qntPrint} <br>
-            Peso total: ${convertation(totalWeight())} <br>
-            Custo por filamento: R$${convertation(filamentPerGram())} <br>
-            Custo de Energia: R$${convertation(costEnergy())} <br>
-            Amortização: R$${convertation(amortisation())} <br>
-            Custo sem percentual de falhas: R$${convertation(totalCost())} <br>
-            <strong>Total de Custos:</strong> R$${convertation(totalWithFailure())}
-            `;
-            
-            field.resultArea.appendChild(resultDiv);
-            
+        function filamentPerGram() { // Cost of filament per gram
+            return valueField.coil / 1000;
         }
 
-        function convertation(valor){return valor.toFixed(2).replace('.',',')}
+        function totalWeight() { //Weight total
+            return valueField.weight * valueField.qntPrint;
+        }
 
+        function totalFilamentCost() { //cost filament total
+            return totalWeight() * filamentPerGram();
+        }
 
+        function decimalTime() { //Decimal Time
+            return valueField.hour + (valueField.minute / 60);
+        }
+
+        function costEnergy() { //Energy Costs
+            return (consumption.a1Mini * decimalTime()) * valueField.kwh;
+        }
+
+        function amortisation() {
+            return (valueField.valuePrint / valueField.serviceLife) * decimalTime()
+        }
+
+        function totalCost() {
+            return totalFilamentCost() + costEnergy() + amortisation() + valueField.addCost
+        }
+
+        function totalWithFailure() {
+            return totalCost() * (1 + (valueField.failure / 100))
+        }
+
+        function textResult() {
+
+            const resultDiv = document.createElement('div');
+
+            field.resultArea.innerHTML = '';
+            resultDiv.innerHTML =
+                `Quantidade de Impressões: ${valueField.qntPrint} <br>
+            Peso total: ${totalWeight().toFixed(2)}g <br>
+            Custo por filamento: ${convertation(filamentPerGram())} <br>
+            Custo de Energia: ${convertation(costEnergy())} <br>
+            Amortização: ${convertation(amortisation())} <br>
+            Custo sem percentual de falhas: ${convertation(totalCost())} <br>
+            <strong>Total de Custos:</strong> ${convertation(totalWithFailure())}
+            `;
+
+            field.resultArea.appendChild(resultDiv);
+
+        }
+
+        function convertation(valor) { return formatter.format(valor); }
+
+        console.log(field.radios)
         textResult();
-    })
+    });
 }
 globalCode();
