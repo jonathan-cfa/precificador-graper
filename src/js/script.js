@@ -54,6 +54,12 @@ function globalCode() {
         function amortisation() { return (valueField.valuePrint / valueField.serviceLife) * decimalTime() };
         function totalCost() { return totalFilamentCost() + costEnergy() + amortisation() + valueField.addCost };
         function totalWithFailure() { return totalCost() * (1 + (valueField.failure / 100)) };
+
+        function textResult (){
+            const text = `Quantidade de Impressões: ${valueField.qntPrint}`
+            return text;
+        }
+        console.log(textResult())
     })
 }
 globalCode();
