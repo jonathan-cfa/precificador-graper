@@ -2,8 +2,8 @@ function globalCode() {
     const btnGenerate = document.querySelector('#btn-generate')
     btnGenerate.addEventListener('click', function (e) {
 
-        const field = {
-            //------------------------------------------Camps the HTML
+        const field = {// All fields 
+            //------------------------------------------Field the HTML
             //Content
             fQnt: document.querySelector('#iquantity'),
             fHour: document.querySelector('#ihour'),
@@ -28,7 +28,7 @@ function globalCode() {
             //Radios
             radios: document.querySelectorAll('radio')
         };
-        const valueField = {
+        const valueField = { // All values the Fields
             qntPrint: Number(field.fQnt.value),
             hour: Number(field.fHour.value),
             minute: Number(field.fMinutes.value),
@@ -44,11 +44,11 @@ function globalCode() {
             manual: Number(field.fManualValue.value),
         };
 
-        const consumption = {
+        const consumption = { //3D printer power consumption
             a1Mini: 95 / 1000,
         };
 
-        const formatter = new Intl.NumberFormat('pt-BR', {
+        const formatter = new Intl.NumberFormat('pt-BR', { //Formats values for the Brazilian real
             style: 'currency',
             currency: 'BRL'
         });
@@ -73,19 +73,19 @@ function globalCode() {
             return (consumption.a1Mini * decimalTime()) * valueField.kwh;
         }
 
-        function amortisation() {
+        function amortisation() { //Printer depreciation
             return (valueField.valuePrint / valueField.serviceLife) * decimalTime()
         }
 
-        function totalCost() {
+        function totalCost() { // Total cost
             return totalFilamentCost() + costEnergy() + amortisation() + valueField.addCost
         }
 
-        function totalWithFailure() {
+        function totalWithFailure() { //Total Cost of Failure
             return totalCost() * (1 + (valueField.failure / 100))
         }
 
-        function textResult() {
+        function textResult() { // Result printed in result area
 
             const resultDiv = document.createElement('div');
 
@@ -104,7 +104,7 @@ function globalCode() {
 
         }
 
-        function convertation(valor) { return formatter.format(valor); }
+        function convertation(valor) { return formatter.format(valor); } //Formatting function associated with a variable "formatter"
 
         console.log(field.radios)
         textResult();
