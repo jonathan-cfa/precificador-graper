@@ -29,14 +29,14 @@ function globalCode() {
         const valueField = {
             qntPrint: Number(field.fQnt.value),
             hour: Number(field.fHour.value),
-            minute: Number(field.fHourvalue),
+            minute: Number(field.fMinutes.value),
             weight: Number(field.fWeight.value),
             coil: Number(field.fCoil.value),
             kwh: Number(field.fCostKwh.value),
             valuePrint: Number(field.fPrintValue.value),
             serviceLife: Number(field.fServiceLife.value),
             failure: Number(field.fFailure.value),
-            addCost: Number(field.fCostAdd),
+            addCost: Number(field.fCostAdd.value),
             markup: Number(field.fMarkup.value),
             marge: Number(field.fMarge.value),
             manual: Number(field.fManualValue.value),
@@ -55,11 +55,27 @@ function globalCode() {
         function totalCost() { return totalFilamentCost() + costEnergy() + amortisation() + valueField.addCost };
         function totalWithFailure() { return totalCost() * (1 + (valueField.failure / 100)) };
 
-        function textResult (){
-            const text = `Quantidade de Impressões: ${valueField.qntPrint}`
-            return text;
+        function textResult() {
+            const resultDiv = document.createElement('div');
+            field.resultArea.innerHTML = '';
+            resultDiv.innerHTML = 
+            `Quantidade de Impressões: ${valueField.qntPrint} <br>
+            Peso total: ${convertation(totalWeight())} <br>
+            Custo por filamento: R$${convertation(filamentPerGram())} <br>
+            Custo de Energia: R$${convertation(costEnergy())} <br>
+            Amortização: R$${convertation(amortisation())} <br>
+            Custo sem percentual de falhas: R$${convertation(totalCost())} <br>
+            <strong>Total de Custos:</strong> R$${convertation(totalWithFailure())}
+            `;
+            
+            field.resultArea.appendChild(resultDiv);
+            
         }
-        console.log(textResult())
+
+        function convertation(valor){return valor.toFixed(2).replace('.',',')}
+
+
+        textResult();
     })
 }
 globalCode();
