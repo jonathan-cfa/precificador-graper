@@ -130,6 +130,8 @@ function globalCode() {
 
         textResult();
         textAmountDue();
+
+        let valor = 10;
     });
 }
 globalCode();
