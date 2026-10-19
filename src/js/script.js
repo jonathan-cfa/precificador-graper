@@ -62,7 +62,7 @@ function globalCode() {
         }
 
         function totalFilamentCost() { //cost filament total
-            return totalWeight() * filamentPerGram();
+            return valueField.qntPrint * (totalWeight() * filamentPerGram());
         }
 
         function decimalTime() { //Decimal Time
@@ -70,11 +70,11 @@ function globalCode() {
         }
 
         function costEnergy() { //Energy Costs
-            return (consumption.a1Mini * decimalTime()) * valueField.kwh;
+            return valueField.qntPrint * ((consumption.a1Mini * decimalTime()) * valueField.kwh);
         }
 
         function amortisation() { //Printer depreciation
-            return (valueField.valuePrint / valueField.serviceLife) * decimalTime();
+            return valueField.qntPrint * ((valueField.valuePrint / valueField.serviceLife) * decimalTime());
         }
 
         function totalCost() { // Total cost
@@ -119,7 +119,7 @@ function globalCode() {
             const strong = document.createElement('strong');
             strong.textContent = 'Valor a cobrar:';
 
-            divAmount.append(divider,strong, convertation(amountDue()));
+            divAmount.append(divider, strong, convertation(amountDue()));
 
             field.resultArea.appendChild(divAmount);
         }
