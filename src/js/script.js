@@ -85,6 +85,10 @@ function globalCode() {
             return totalCost() * (1 + (valueField.failure / 100));
         }
 
+        function profitCalculation() {
+            return amountDue() - totalWithFailure();
+        }
+
         function textResult() { // Result printed in result area
 
             const resultDiv = document.createElement('div');
@@ -115,11 +119,11 @@ function globalCode() {
         function textAmountDue() {
             const divAmount = document.createElement('div');
 
-            const divider = document.createElement('hr')
+            const divider = document.createElement('hr');
             const strong = document.createElement('strong');
             strong.textContent = 'Valor a cobrar:';
 
-            divAmount.append(divider, strong, convertation(amountDue()));
+            divAmount.append(divider, strong, convertation(amountDue()), `Lucro ${convertation(profitCalculation())}`);
 
             field.resultArea.appendChild(divAmount);
         }
